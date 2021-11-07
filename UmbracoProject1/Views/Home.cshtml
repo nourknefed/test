@@ -1,0 +1,44 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+    Layout = "Master.cshtml";
+}
+
+
+
+
+@{
+    var selection = Umbraco.Content(Guid.Parse("8b5d4cef-0e95-436b-9af1-92f5c646336d"))
+    .Descendants()
+    .Where(x => x.IsVisible() && (x.IsDocumentType("GossipArticle") || x.IsDocumentType("News Articles") || x.IsDocumentType("review Article")))
+    .OrderByDescending(x => x.CreateDate);
+}
+<ul>
+    @foreach (var item in selection)
+    {
+        <li>
+            <a href="@item.Url()">@item.Name()</a>
+        </li>
+    }
+</ul>
+
+@foreach (var item in selection)
+{
+
+    <h3>@item.Value("titlenumber")</h3>
+    
+  
+
+
+
+}
+
+
+
+
+
+
+
+
+
